@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>População</title>
+</head>
+<body>
+    <h1>Cálculo de Crescimento Populacional</h1>
+
+    <p>Este algoritmo calcula quantos anos o país A levará para ultrapassar a população do país B.</p>
+
+    <button onclick="calcularPopulacao()">Calcular</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function calcularPopulacao() {
+            let populacaoA = 5000000;
+            let populacaoB = 7000000;
+            let taxaNatalidadeA = 0.03;
+            let taxaNatalidadeB = 0.02;
+            let anos = 0;
+
+            while (populacaoA <= populacaoB) {
+                populacaoA += populacaoA * taxaNatalidadeA;
+                populacaoB += populacaoB * taxaNatalidadeB;
+                anos++;
+            }
+
+            document.getElementById("resultado").innerText = 
+                `O país A ultrapassará a população do país B em ${anos} anos.`;
+        }
+    </script>
+</body>
+</html>
