@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversão Cambial</title>
+</head>
+<body>
+    <h1>Conversão de Reais para Dólares</h1>
+
+    <label for="reais">Digite a quantidade de Reais a ser convertida: </label>
+    <input type="number" id="reais" step="0.01">
+    <button onclick="converter()">Converter</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function converter() {
+            let reais = parseFloat(document.getElementById("reais").value);
+            let cotacaoDolar = 5.50;
+            let dolares = reais / cotacaoDolar;
+
+            document.getElementById("resultado").innerText = "O valor equivalente em Dólares é: US$ " + dolares.toFixed(2);
+        }
+    </script>
+</body>
+</html>
