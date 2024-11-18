@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empréstimo Bancário</title>
+</head>
+<body>
+    <h1>Empréstimo Bancário</h1>
+
+    <label for="salario">Digite o valor do seu salário: </label>
+    <input type="number" id="salario" step="0.01">
+    <br><br>
+    <label for="prestacao">Digite o valor da prestação: </label>
+    <input type="number" id="prestacao" step="0.01">
+    <br><br>
+    <button onclick="verificarEmprestimo()">Verificar Empréstimo</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function verificarEmprestimo() {
+            let salario = parseFloat(document.getElementById("salario").value);
+            let prestacao = parseFloat(document.getElementById("prestacao").value);
+            let limite = salario * 0.20;
+            let resultado = "";
+
+            if (prestacao > limite) {
+                resultado = "Empréstimo não pode ser concedido.";
+            } else {
+                resultado = "Empréstimo pode ser concedido.";
+            }
+
+            document.getElementById("resultado").innerText = resultado;
+        }
+    </script>
+</body>
+</html>
