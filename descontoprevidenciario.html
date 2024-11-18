@@ -1,0 +1,20 @@
+algoritmo "DescontoPrevidenciario"
+var
+    salario, desconto, desconto_maximo: real
+inicio
+    desconto_maximo <- 334,29
+
+
+    escreval("Digite o salário do funcionário: ")
+    leia(salario)
+
+    desconto <- salario * 0.11
+
+    se desconto > desconto_maximo entao
+        desconto <- desconto_maximo
+    fimse
+
+
+    escreval("O valor do desconto previdenciário é: R$ ", desconto:4:2)
+
+fimalgoritmo
