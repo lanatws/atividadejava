@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pluviometria Junho</title>
+</head>
+<body>
+    <h1>Pluviometria de Junho</h1>
+    <p>Digite os índices pluviométricos de cada dia de junho (1 a 30).</p>
+    <form id="pluviometriaForm">
+        <div id="diasInput"></div>
+        <button type="button" onclick="calcularPluviometria()">Calcular</button>
+    </form>
+    <h2>Resultados:</h2>
+    <p id="resultadoMaisChuvoso"></p>
+    <p id="resultadoMenosChuvoso"></p>
+    <p id="mediaPrimeiraQuinzena"></p>
+    <p id="mediaSegundaQuinzena"></p>
+
+    <script>
+        let pluviometria = new Array(30).fill(0);
+        let somaPrimeiraQuinzena = 0;
+        let somaSegundaQuinzena = 0;
+        let diaMaisChuvoso = 0;
+        let diaMenosChuvoso = 0;
+
+        function gerarCampos() {
+            const diasInput = document.getElementById('diasInput');
+            for (let dia = 1; dia <= 30; dia++) {
+                const label = document.createElement('label');
+                label.innerText = `Dia ${dia}: `;
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.step = '0.01';
+                input.id = `dia${dia}`;
+                input.required = true;
+                diasInput.appendChild(label);
+                diasInput.appendChild(input);
+                diasInput.appendChild(document.createElement('br'));
+            }
+        }
+
+        function calcularPluviometria() {
+            somaPrimeiraQuinzena = 0;
+            somaSegundaQuinzena = 0;
+            diaMaisChuvoso = 1;
+            diaMenosChuvoso = 1;
+
+            for (let dia = 1; dia <= 30; dia++) {
+                pluviometria[dia - 1] = parseFloat(document.getElementById(`dia${dia}`).value);
+            }
+
+            for (let dia = 0; dia < 30; dia++) {
+                if (pluviometria[dia] > pluviometria[diaMaisChuvoso - 1]) {
+                    diaMaisChuvoso = dia + 1;
+                }
+
+                if (pluviometria[dia] < pluviometria[diaMenosChuvoso - 1]) {
+                    diaMenosChuvoso = dia + 1;
+                }
+
+                if (dia < 15) {
+                    somaPrimeiraQuinzena += pluviometria[dia];
+                } else {
+                    somaSegundaQuinzena += pluviometria[dia];
+                }
+            }
+
+            let mediaPrimeiraQuinzena = somaPrimeiraQuinzena / 15;
+            let mediaSegundaQuinzena = somaSegundaQuinzena / 15;
+
+            document.getElementById('resultadoMaisChuvoso').innerText = 
+                `Dia que mais choveu: Dia ${diaMaisChuvoso} com ${pluviometria[diaMaisChuvoso - 1].toFixed(2)} mm`;
+            document.getElementById('resultadoMenosChuvoso').innerText = 
+                `Dia que menos choveu: Dia ${diaMenosChuvoso} com ${pluviometria[diaMenosChuvoso - 1].toFixed(2)} mm`;
+            document.getElementById('mediaPrimeiraQuinzena').innerText = 
+                `Média da primeira quinzena: ${mediaPrimeiraQuinzena.toFixed(2)} mm`;
+            document.getElementById('mediaSegundaQuinzena').innerText = 
+                `Média da segunda quinzena: ${mediaSegundaQuinzena.toFixed(2)} mm`;
+        }
+
+        gerarCampos();
+    </script>
+</body>
+</html>
