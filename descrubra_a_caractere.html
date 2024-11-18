@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descubra o Caractere</title>
+</head>
+<body>
+    <h1>Descubra o Caractere</h1>
+
+    <label for="caractere">Digite um caractere: </label>
+    <input type="text" id="caractere" maxlength="1">
+    <button onclick="descobrirCaractere()">Descobrir</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function descobrirCaractere() {
+            let letra = document.getElementById("caractere").value;
+            let resultado = "";
+
+            if (letra.length === 1) {
+                // Verifica se é uma vogal minúscula
+                if (["a", "e", "i", "o", "u"].includes(letra)) {
+                    resultado = letra + " é uma vogal.";
+                }
+                // Verifica se é uma vogal maiúscula
+                else if (["A", "E", "I", "O", "U"].includes(letra)) {
+                    resultado = letra + " é uma vogal.";
+                }
+                // Verifica se é uma consoante
+                else if ((letra >= "b" && letra <= "z") || (letra >= "B" && letra <= "Z")) {
+                    resultado = letra + " é uma consoante.";
+                }
+                // Verifica se é um número
+                else if (letra >= "0" && letra <= "9") {
+                    resultado = letra + " é um número.";
+                }
+                // Caso seja outro símbolo
+                else {
+                    resultado = letra + " é um símbolo.";
+                }
+            } else {
+                resultado = "Por favor, digite apenas um caractere.";
+            }
+
+            document.getElementById("resultado").innerText = resultado;
+        }
+    </script>
+</body>
+</html>
