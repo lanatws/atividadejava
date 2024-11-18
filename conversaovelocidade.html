@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversão de Velocidade</title>
+</head>
+<body>
+    <h1>Conversão de Velocidade</h1>
+
+    <label for="velocidadeMs">Digite a velocidade em m/s: </label>
+    <input type="number" id="velocidadeMs" step="0.01">
+    <button onclick="converter()">Converter</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function converter() {
+            let velocidadeMs = parseFloat(document.getElementById("velocidadeMs").value);
+            let velocidadeKmh = velocidadeMs * 3.6;
+
+            document.getElementById("resultado").innerText = "A velocidade em Km/h é: " + velocidadeKmh.toFixed(2);
+        }
+    </script>
+</body>
+</html>
