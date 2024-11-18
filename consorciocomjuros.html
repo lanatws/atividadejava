@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consórcio com Juros</title>
+</head>
+<body>
+    <h1>Consórcio com Juros</h1>
+    <p id="valorConsorcio"></p>
+    <p id="valorEntrada"></p>
+    <p id="valorFinal"></p>
+
+    <script>
+        let valorConsorcio = 280000.00;
+        let valorEntrada = 2500.00;
+        let jurosMensal = 0.01;
+        let numeroParcelas = 65;
+
+        let valorPresente = valorConsorcio - valorEntrada;
+        let valorFinal = valorPresente * Math.pow(1 + jurosMensal, numeroParcelas);
+
+        document.getElementById('valorConsorcio').innerText = "Valor do consórcio: R$ " + valorConsorcio.toFixed(2);
+        document.getElementById('valorEntrada').innerText = "Valor da entrada: R$ " + valorEntrada.toFixed(2);
+        document.getElementById('valorFinal').innerText = "Valor final a ser pago por Paulo ao fim dos 65 meses: R$ " + valorFinal.toFixed(2);
+    </script>
+</body>
+</html>
